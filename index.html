@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Pyschic Game</title>
+</head>
+
+<body>
+
+  <h1>Pyschic Game!</h1>
+
+  <p id="score"></p>
+  <p id="question"></p>
+  <p id="wins"></p>
+
+  <script>
+    // VARIABLES
+    
+    // I'm setting an array for specfic letters
+    var questions = [
+      { q: "What Number and I thinking of?", a: "q" },
+      { q: "What Number am I thinking of?", a: "w" },
+      { q: "What Number am I thinking of?", a: "e" },
+      { q: "What Number am I thinking of?", a: "r" },
+      { q: "What number am I thinking of?", a: "t" },
+      { q: "What number am I thinking of?", a: "y" },
+      { q: "What number am I thinking of?", a: "u" },
+      { q: "What number am I thinking of?", a: "i" },
+      { q: "What number am I thinking of?", a: "o" },
+      { q: "What number am I thinking of?", a: "p" },
+      { q: "What number am I thinking of?", a: "a" },
+      { q: "What number am I thinking of?", a: "s" },
+      { q: "What number am I thinking of?", a: "d" },
+      { q: "What number am I thinking of?", a: "f" },
+      { q: "What number am I thinking of?", a: "g" },
+      { q: "What number am I thinking of?", a: "h" },
+      { q: "What number am I thinking of?", a: "j" },
+      { q: "What number am I thinking of?", a: "k" },
+      { q: "What number am I thinking of?", a: "l" },
+      { q: "What number am I thinking of?", a: "z" },
+      { q: "What number am I thinking of?", a: "x" },
+      { q: "What number am I thinking of?", a: "c" },
+      { q: "What number am I thinking of?", a: "v" },
+      { q: "What number am I thinking of?", a: "b" },
+        { q: "What number am I thinking of?", a: "n" },
+        { q: "What number am I thinking of?", a: "m" },
+        
+
+
+    ];
+    // We start the game with a score of 0.
+    var score = 0;
+    // Variable to hold the index of current question.
+    var questionIndex = 0;
+    var wins = 0;
+    // FUNCTIONS
+    // ==============================================================================
+    // Function to render questions.
+    function renderQuestion() {
+      // If there are still more questions, render the next one.
+      if (questionIndex <= (questions.length - 1)) {
+        document.querySelector("#question").innerHTML = questions[questionIndex].q;
+      }
+      // If there aren't, render the end game screen.
+      else {
+        document.querySelector("#question").innerHTML = "Game Over!";
+        document.querySelector("#score").innerHTML = "Final Score: " + score + " out of " + questions.length;
+      }
+    }
+    // Function that updates the score...
+    function updateScore() {
+      document.querySelector("#score").innerHTML = "Score: " + score;
+    }
+    // MAIN PROCESS
+    // ==============================================================================
+    // Calling functions to start the game.
+    renderQuestion();
+    updateScore();
+    // When the user presses a key, it will run the following function...
+    document.onkeyup = function(event) {
+      // If there are no more questions, stop the function.
+      if (questionIndex === questions.length) {
+        return;
+      }
+      // Determine which key was pressed, make it lowercase, and set it to the userInput variable.
+      var userInput = event.key.toLowerCase();
+      // run variable if any key is pressed
+      if (userInput === event.key) {
+        // If they guess the correct answer, increase and update score, alert them they got it right.
+        if (userInput === questions[questionIndex].a) {
+          alert("Correct!");
+          score++;
+          updateScore();
+        }
+        // If wrong, alert them they are wrong.
+        else {
+          alert("Wrong!");
+        }
+        // Increment the questionIndex variable and call the renderQuestion function.
+        questionIndex++;
+        renderQuestion();
+      }
+    };
+  </script>
+
+</body>
+
+</html>
