@@ -51,9 +51,10 @@
     ];
     // We start the game with a score of 0.
     var score = 0;
+    var wins = score;
     // Variable to hold the index of current question.
     var questionIndex = 0;
-    var wins = 0;
+
     // FUNCTIONS
     // ==============================================================================
     // Function to render questions.
@@ -61,22 +62,29 @@
       // If there are still more questions, render the next one.
       if (questionIndex <= (questions.length - 1)) {
         document.querySelector("#question").innerHTML = questions[questionIndex].q;
-      }
+      
+    }
       // If there aren't, render the end game screen.
       else {
         document.querySelector("#question").innerHTML = "Game Over!";
         document.querySelector("#score").innerHTML = "Final Score: " + score + " out of " + questions.length;
+        document.querySelector("#wins").innerHTML = "Wins: " + wins;
       }
     }
     // Function that updates the score...
     function updateScore() {
       document.querySelector("#score").innerHTML = "Score: " + score;
     }
+    // function that upadates wins
+    function updateWins() {
+        document.querySelector("#wins").innerHTML = "Wins: " + wins;
+    }
     // MAIN PROCESS
     // ==============================================================================
     // Calling functions to start the game.
     renderQuestion();
     updateScore();
+   // updateWins();
     // When the user presses a key, it will run the following function...
     document.onkeyup = function(event) {
       // If there are no more questions, stop the function.
@@ -87,15 +95,17 @@
       var userInput = event.key.toLowerCase();
       // run variable if any key is pressed
       if (userInput === event.key) {
-        // If they guess the correct answer, increase and update score, alert them they got it right.
+        // If they guess the correct answer, increase and update score and win percentage, alert them they got it right.
         if (userInput === questions[questionIndex].a) {
           alert("Correct!");
           score++;
-          updateScore();
+        
+          
         }
+      
         // If wrong, alert them they are wrong.
         else {
-          alert("Wrong!");
+          alert("You SUCK!");
         }
         // Increment the questionIndex variable and call the renderQuestion function.
         questionIndex++;
