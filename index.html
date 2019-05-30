@@ -13,38 +13,39 @@
   <p id="score"></p>
   <p id="question"></p>
   <p id="wins"></p>
+  <p id="losses"></p>
 
   <script>
     // VARIABLES
     
     // I'm setting an array for specfic letters
     var questions = [
-      { q: "What Number and I thinking of?", a: "q" },
-      { q: "What Number am I thinking of?", a: "w" },
-      { q: "What Number am I thinking of?", a: "e" },
-      { q: "What Number am I thinking of?", a: "r" },
-      { q: "What number am I thinking of?", a: "t" },
-      { q: "What number am I thinking of?", a: "y" },
-      { q: "What number am I thinking of?", a: "u" },
-      { q: "What number am I thinking of?", a: "i" },
-      { q: "What number am I thinking of?", a: "o" },
-      { q: "What number am I thinking of?", a: "p" },
-      { q: "What number am I thinking of?", a: "a" },
-      { q: "What number am I thinking of?", a: "s" },
-      { q: "What number am I thinking of?", a: "d" },
-      { q: "What number am I thinking of?", a: "f" },
-      { q: "What number am I thinking of?", a: "g" },
-      { q: "What number am I thinking of?", a: "h" },
-      { q: "What number am I thinking of?", a: "j" },
-      { q: "What number am I thinking of?", a: "k" },
-      { q: "What number am I thinking of?", a: "l" },
-      { q: "What number am I thinking of?", a: "z" },
-      { q: "What number am I thinking of?", a: "x" },
-      { q: "What number am I thinking of?", a: "c" },
-      { q: "What number am I thinking of?", a: "v" },
-      { q: "What number am I thinking of?", a: "b" },
-        { q: "What number am I thinking of?", a: "n" },
-        { q: "What number am I thinking of?", a: "m" },
+    //  { q: "What Letter and I thinking of?", a: "q" },
+      { q: "What Letter am I thinking of?", a: "w" },
+      { q: "What Letter am I thinking of?", a: "e" },
+     // { q: "What Letter am I thinking of?", a: "r" },
+      { q: "What Letter am I thinking of?", a: "t" },
+    //  { q: "What Letter am I thinking of?", a: "y" },
+     // { q: "What Letter am I thinking of?", a: "u" },
+      { q: "What Letter am I thinking of?", a: "i" },
+      //{ q: "What Letter am I thinking of?", a: "o" },
+    //  { q: "What Letter am I thinking of?", a: "p" },
+      { q: "What Letter am I thinking of?", a: "a" },
+    //  { q: "What Letter am I thinking of?", a: "s" },
+      { q: "What Letter am I thinking of?", a: "d" },
+    //  { q: "What Letter am I thinking of?", a: "f" },
+    //  { q: "What Letter am I thinking of?", a: "g" },
+      { q: "What Letter am I thinking of?", a: "h" },
+      //{ q: "What Letter am I thinking of?", a: "j" },
+      { q: "What Letter am I thinking of?", a: "k" },
+     // { q: "What Letter am I thinking of?", a: "l" },
+      { q: "What Letter am I thinking of?", a: "z" },
+    //  { q: "What Letter am I thinking of?", a: "x" },
+    //  { q: "What Letter am I thinking of?", a: "c" },
+      { q: "What Letter am I thinking of?", a: "v" },
+     // { q: "What Letter am I thinking of?", a: "b" },
+      //  { q: "What Letter am I thinking of?", a: "n" },
+        { q: "What Letter am I thinking of?", a: "m" },
         
 
 
@@ -52,6 +53,7 @@
     // We start the game with a score of 0.
     var score = 0;
     var wins = score;
+    var losses = 0
     // Variable to hold the index of current question.
     var questionIndex = 0;
 
@@ -69,6 +71,7 @@
         document.querySelector("#question").innerHTML = "Game Over!";
         document.querySelector("#score").innerHTML = "Final Score: " + score + " out of " + questions.length;
         document.querySelector("#wins").innerHTML = "Wins: " + wins;
+        document.querySelector("#losses").innerHTML = "Losses: " + losses;
       }
     }
     // Function that updates the score...
@@ -97,7 +100,7 @@
       if (userInput === event.key) {
         // If they guess the correct answer, increase and update score and win percentage, alert them they got it right.
         if (userInput === questions[questionIndex].a) {
-          alert("Correct!");
+          alert("That tickles my berries");
           score++;
           wins++;
           
@@ -106,9 +109,10 @@
         }
         
       
-        // If wrong, alert them they are wrong.
+        // If wrong, alert them they are wrong and add a loss stat
         else {
           alert("You SUCK!");
+          losses++;
         }
         // Increment the questionIndex variable and call the renderQuestion function.
         questionIndex++;
